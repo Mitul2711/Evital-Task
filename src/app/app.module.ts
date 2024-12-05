@@ -7,8 +7,10 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { MaterialModule } from './modules/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { AngularFireModule } from "@angular/fire/compat";
-// import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireModule } from "@angular/fire/compat";
+import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { environment } from 'src/environment/environment';
+
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthModule,
     MaterialModule,
     BrowserAnimationsModule,
-    // AngularFireModule.initializeApp(AuthApi.firebaseConfig),
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,  // AngularFireModule.initializeApp(AuthApi.firebaseConfig),
     // AngularFireAuthModule,
   ],
   providers: [],
