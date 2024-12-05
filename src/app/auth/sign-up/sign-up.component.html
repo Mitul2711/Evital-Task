@@ -1,4 +1,4 @@
-<div class="login-div">
+<!-- <div class="login-div">
     <mat-card class="example-card">
         <mat-card-header>
             <mat-card-title>SignUp</mat-card-title>
@@ -35,5 +35,58 @@
 
 
     </mat-card>
+
+</div> -->
+
+
+<div class="login-div">
+
+    <div>
+
+        <mat-card class="example-card">
+            <div class="title">
+                <h1>SignUp</h1>
+            </div>
+
+            <mat-card-content>
+
+                <form class="example-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>UserName</mat-label>
+                        <input type="text" matInput formControlName="userName" placeholder="UserName">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input type="Password" matInput formControlName="password">
+                    </mat-form-field>
+
+                    <div class="btn-div">
+
+                        <button mat-stroked-button color="accent" class="btn-block" [disabled]="signupForm.invalid">
+                            Log in
+                        </button>
+
+
+                        <p>Forgot Password?</p>
+
+                    </div>
+
+                </form>
+
+                <div class="info">
+                    <p>Already have an Account?  <span (click)="Login()">Login</span></p>
+                </div>
+
+
+            </mat-card-content>
+
+
+        </mat-card>
+
+    </div>
 
 </div>

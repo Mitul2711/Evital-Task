@@ -10,6 +10,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuth, AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { environment } from 'src/environment/environment';
+import { PageRoutingModule } from './pages/page-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { PagesModule } from './pages/pages.module';
 
 
 @NgModule({
@@ -20,12 +23,13 @@ import { environment } from 'src/environment/environment';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    PagesModule,
     AuthModule,
     MaterialModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,  // AngularFireModule.initializeApp(AuthApi.firebaseConfig),
-    // AngularFireAuthModule,
+    AngularFireAuthModule, 
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

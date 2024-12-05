@@ -1,14 +1,51 @@
 <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>My App</span>
-    <span class="example-spacer"></span>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-      <mat-icon>share</mat-icon>
-    </button>
-  </mat-toolbar>
-  
+
+
+  <div class="main-div">
+
+    <div class="tag">
+      <h1>Evital</h1>
+    </div>
+
+    <div class="opt">
+      <div>
+        <p>Home</p>
+      </div>
+      <div>
+        <p>Patient</p>
+      </div>
+      <div>
+        <p>About</p>
+      </div>
+      <div>
+        <p>Orders</p>
+      </div>
+    </div>
+
+    <div class="combined">
+    <div class="input-field">
+      <input matInput type="text" placeholder="What are you looking for">
+      <div style="background-color: rgb(235, 235, 235);">
+        <div class="material-symbols-outlined srch">
+          <mat-icon>search</mat-icon>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="icon">
+      <div class="cart cur">
+        <mat-icon>shopping_cart</mat-icon>
+      </div>
+   
+      <div class="cur" (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+      </div>
+    </div>
+
+  </div>
+
+  </div>
+
+
+</mat-toolbar>

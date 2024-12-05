@@ -1,0 +1,99 @@
+<div>
+
+    <div class="sec1">
+
+        <div class="frow">
+            <div class="block"></div>
+            <p class="categories" style="color: #DB4444;">Medicine</p>
+        </div>
+
+        <div class="title-btn1 cato">
+            <p class="bro">Browse By Medicine Names</p>
+        </div>
+
+        <div class="swiper mySwiper">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>Dolo</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>Beta</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>Trichup</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>paracetamol</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>Thyrox</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>zifi</p>
+
+                </div>
+
+                <div class="swiper-slide cat fcol">
+
+                    <p>Mamy</p>
+
+                </div>
+
+
+            </div>
+
+            <div class="swiper-pagination"></div>
+
+        </div>
+
+        <hr>
+
+    </div>
+
+    <div class="sec2">
+
+        <div class="frow">
+            <div class="block"></div>
+            <p class="categories" style="color: #DB4444;">Vital Care</p>
+        </div>
+
+        <div class="med-div">
+
+            <div *ngFor="let data of medicines" class="med-card">
+
+                <div class="image-container">
+                    <img class="image" [src]="data.medicine_image">
+                </div>
+
+                <div class="med-details">
+                    <p class="prod-name" style="font-weight: 450;">{{data.medicine_name}}</p>
+                    <div class="price frow">
+                        <p style="color: #DB4444;">{{data.mrp}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>

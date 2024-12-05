@@ -1,35 +1,47 @@
 <div class="login-div">
-    <mat-card class="example-card">
-        <mat-card-header>
-            <mat-card-title>Login</mat-card-title>
-        </mat-card-header>
 
-        <mat-card-content>
+    <div>
 
-            <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                <mat-form-field class="example-full-width">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
-                </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <mat-label>Password</mat-label>
-                    <input type="Password" matInput formControlName="password">
-                </mat-form-field>
-
-                <button mat-stroked-button color="accent" class="btn-block" [disabled]="loginForm.invalid">
-                    Log in
-                  </button>
-
-            </form>
-
-            <div>
-                <p>Don't have an Account? <span (click)="signup()">SignUp</span></p>
+        <mat-card class="example-card">
+            <div class="title">
+                <h1>Login</h1>
             </div>
 
+            <mat-card-content>
 
-        </mat-card-content>
+                <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input type="Password" matInput formControlName="password">
+                    </mat-form-field>
+
+                    <div class="btn-div">
+
+                        <button mat-stroked-button color="accent" class="btn-block" [disabled]="loginForm.invalid">
+                            Log in
+                        </button>
 
 
-    </mat-card>
+                        <p>Forgot Password?</p>
+
+                    </div>
+
+                </form>
+
+                <div class="info">
+                    <p>Don't have an Account?  <span (click)="signup()">SignUp</span></p>
+                </div>
+
+
+            </mat-card-content>
+
+
+        </mat-card>
+
+    </div>
 
 </div>
