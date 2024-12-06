@@ -1,51 +1,55 @@
-<mat-toolbar>
+<div class="head-div">
+
+  <mat-toolbar>
 
 
-  <div class="main-div">
-
-    <div class="tag">
-      <h1>Evital</h1>
-    </div>
-
-    <div class="opt">
-      <div>
-        <p>Home</p>
+    <div class="main-div">
+  
+      <div class="tag">
+        <h1>Evital</h1>
       </div>
-      <div>
-        <p>Patient</p>
-      </div>
-      <div>
-        <p>About</p>
-      </div>
-      <div>
-        <p>Orders</p>
-      </div>
-    </div>
-
-    <div class="combined">
-    <div class="input-field">
-      <input matInput type="text" placeholder="What are you looking for">
-      <div style="background-color: rgb(235, 235, 235);">
-        <div class="material-symbols-outlined srch">
-          <mat-icon>search</mat-icon>
+  
+      <div class="opt">
+        <div>
+          <p>Home</p>
         </div>
-
+        <div>
+          <p>Patient</p>
+        </div>
+        <div>
+          <p>About</p>
+        </div>
+        <div>
+          <p>Orders</p>
+        </div>
       </div>
+  
+      <div class="combined">
+      <div class="input-field">
+        <input matInput type="text" placeholder="What are you looking for" (keyup.enter)="onSearch($event)">
+        <div style="background-color: rgb(235, 235, 235);">
+          <div class="material-symbols-outlined srch">
+            <mat-icon>search</mat-icon>
+          </div>
+  
+        </div>
+      </div>
+  
+      <div class="icon">
+        <div class="cart cur">
+          <mat-icon [matBadge]="badge" (click)="onCart()">shopping_cart</mat-icon>
+        </div>
+     
+        <div class="cur" (click)="logOut()">
+          <mat-icon>logout</mat-icon>
+        </div>
+      </div>
+  
     </div>
-
-    <div class="icon">
-      <div class="cart cur">
-        <mat-icon>shopping_cart</mat-icon>
-      </div>
-   
-      <div class="cur" (click)="logOut()">
-        <mat-icon>logout</mat-icon>
-      </div>
+  
     </div>
+  
+  
+  </mat-toolbar>
 
-  </div>
-
-  </div>
-
-
-</mat-toolbar>
+</div>

@@ -1,0 +1,27 @@
+<div class="cart-container">
+    <div class="cart-item" *ngFor="let item of medData; let i = index">
+        <div class="medicine-details">
+            <h3 class="medicine-name">{{ item.medicine_name }}</h3>
+            <p class="medicine-price">Price: ${{ item.mrp }}</p>
+        </div>
+        <div class="quantity-controls">
+            <button class="quantity-btn" (click)="decreaseQuantity(item)">-</button>
+            <span class="medicine-count">{{ quantity }}</span>
+            <button class="quantity-btn" (click)="increaseQuantity(item)">+</button>
+        </div>
+        <p class="subtotal">Subtotal: ${{ (item.mrp * quantity).toFixed(2) }}</p>
+        <button class="remove-btn" (click)="removeItem(i)">Remove</button>
+    </div>
+
+    <div class="cart-footer" *ngIf="medData.length > 0; else emptyCart">
+        <!-- <p class="total">Total: ${{ calculateTotal() }}</p> -->
+        <div class="rem-btn">
+            <button class="checkout-btn" (click)="proceedToCheckout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+
+    <ng-template #emptyCart>
+        <p class="empty-message">Your cart is empty.</p>
+    </ng-template>
+</div>

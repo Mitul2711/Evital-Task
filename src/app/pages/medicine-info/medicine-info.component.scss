@@ -1,0 +1,60 @@
+.medicine-card {
+    width: 700px;
+    height: 550px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    margin: 20px;
+  }
+  
+  .medicine-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .medicine-details {
+    padding: 15px;
+  }
+  
+  .medicine-name {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .manufacturer,
+  .medicine-info,
+  .packing-size,
+  .effects p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .manufacturer span,
+  .medicine-info span,
+  .packing-size span,
+  .effects span {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .effects {
+    margin-top: 15px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+  }
+  
+  .effects p {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .effects span {
+    color: #27ae60;
+  }
+  

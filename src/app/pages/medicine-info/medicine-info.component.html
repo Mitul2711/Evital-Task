@@ -1,0 +1,15 @@
+<div class="medicine-card">
+    <img [src]="medData.medicine_image" alt="Medicine Image" class="medicine-image">
+    <div class="medicine-details">
+        <h2 class="medicine-name">{{medData.medicine_name}}</h2>
+        <p class="manufacturer">Manufacturer: <span>{{medData.manufacturer_name}}</span></p>
+        <p class="medicine-info">How it works: <span>{{medData.how_medicine_works}}</span></p>
+        <p class="packing-size">Packing Size: <span>{{medData.packing_size}}</span></p>
+        <div class="effects">
+            <p>Alcohol Effect: <span>{{medData.alcohol}}</span></p>
+            <p>Kidney Effect: <span>{{medData.kidney}}</span></p>
+            <p>Liver Effect: <span>{{medData.liver}}</span></p>
+            <p>Pregnancy Effect: <span>{{medData.pregnancy}}</span></p>
+        </div>
+    </div>
+</div>

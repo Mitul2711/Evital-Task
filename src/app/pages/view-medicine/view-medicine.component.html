@@ -1,0 +1,19 @@
+<div class="main-div">
+    <div *ngFor="let data of medicines" class="card">
+
+        <div class="medicine-card">
+            <img src="../../../assets/image/medicine.jpg" alt="Medicine Image" class="medicine-image">
+            <div class="medicine-info">
+                <h3 class="medicine-name">{{data.medicine_name}}</h3>
+                <h3 class="manufacturer-name">{{data.manufacturer_name}}</h3>
+                <p class="medicine-price">₹{{data.mrp}}</p>
+                <div class="medicine-actions">
+                    <button class="info-btn" (click)="onInfo(data)">Info</button>
+                    <button class="add-cart-btn" (click)="addToCart(data)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

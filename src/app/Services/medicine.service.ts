@@ -21,5 +21,13 @@ export class MedicineService {
 
   }
 
+  searchMedicine(data: any) {
+    const formData = new FormData();
+    formData.append('apikey', this.apikey);
+    formData.append('searchstring', data);
+
+    return this.http.post(`${this.url}/medicines/search`, formData);
+  }
+
 }
 
