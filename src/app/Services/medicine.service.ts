@@ -29,5 +29,27 @@ export class MedicineService {
     return this.http.post(`${this.url}/medicines/search`, formData);
   }
 
+  addpatient(data: any) {
+    const formData = new FormData();
+    formData.append('apikey', this.apikey);
+    formData.append('mobile', data.mobile);
+    formData.append('first_name', data.first_name);
+    formData.append('last_name', data.last_name);
+    formData.append('zipcode', data.zipcode);
+    formData.append('dob', data.dob);
+    formData.append('gender', data.gender);
+    formData.append('blood_group', data.dob.blood_group);
+
+    return this.http.post(`${this.url}/patients/add`, formData); 
+  }
+
+  getPatient(data: any) {
+    const formData = new FormData();
+    formData.append('apikey', this.apikey);
+    formData.append('patient_id', data);
+
+    return this.http.post(`${this.url}/patients/view`, formData); 
+  }
+
 }
 

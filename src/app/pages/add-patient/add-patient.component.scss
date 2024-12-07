@@ -1,0 +1,28 @@
+.first-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem; /* Adds spacing between fields */
+  }
+  
+  mat-form-field {
+    flex: 1; /* Allows fields to grow equally */
+    max-width: 300px; /* Optional: Set a max width */
+  }
+  
+
+  .main-div {
+    padding: 20px;
+  }
+
+  .text {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .sel {
+    display: flex;
+    justify-content: center;
+  }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { lastValueFrom } from 'rxjs';
+import { DataShareService } from 'src/app/Services/data-share.service';
 import { MedicineService } from 'src/app/Services/medicine.service';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
@@ -14,9 +16,15 @@ export class HomeComponent implements OnInit {
   mediName: any[] = [["OUiyMRWOnwFdfeiLUZJd5Q=="], ["MZ83mm6x5XpK/ifflDcZcA=="],
     ["MZ83mm6x5XpK/ifflDcZcA=="], ["HfxsCvmDtBWZAifd3yffOA=="]
   ];
+
+  browseMed = ["Dolo", "Beta", "Trichup", "paracetamol", "Thyrox", "zifi", "Mamy"]
+
   medicines: any[] = [];
 
-  constructor(private medicineService: MedicineService) {
+  constructor(private medicineService: MedicineService,
+    private router: Router,
+    private dataShareService: DataShareService
+  ) {
 
   }
 
@@ -36,9 +44,12 @@ export class HomeComponent implements OnInit {
       this.medicines.push(res.data[0]);
     });
     
-    console.log(this.medicines);
-    
-  
+  }
+
+
+  onBrowseMed(data: any) {
+    this.dataShareService.sendMedicineName(data);
+    this.router.navigate(['/medicine']);    
   }
   
 

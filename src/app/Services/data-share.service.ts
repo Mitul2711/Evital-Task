@@ -29,4 +29,11 @@ export class DataShareService {
     this.orderCount.next(data);
   }
 
+  private gridData = new BehaviorSubject<any>(null);
+  public gridData$ = this.gridData.asObservable();
+
+  sendgridData(data: any): void {
+    this.gridData.next(data);
+  }
+
 }

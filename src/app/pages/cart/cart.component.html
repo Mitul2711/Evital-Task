@@ -9,8 +9,8 @@
             <span class="medicine-count">{{ quantity }}</span>
             <button class="quantity-btn" (click)="increaseQuantity(item)">+</button>
         </div>
-        <p class="subtotal">Subtotal: ${{ (item.mrp * quantity).toFixed(2) }}</p>
-        <button class="remove-btn" (click)="removeItem(i)">Remove</button>
+        <p class="subtotal">Subtotal: ₹{{ (item.mrp * quantity).toFixed(2) }}</p>
+        <button class="remove-btn" (click)="removeItem(item)">Remove</button>
     </div>
 
     <div class="cart-footer" *ngIf="medData.length > 0; else emptyCart">

@@ -20,7 +20,6 @@ export class MedicineInfoComponent implements OnInit {
       this.mediId.push(res);
         this.medicineService.getMedicine(JSON.stringify(this.mediId)).subscribe((data: any) => {
           this.medData = data.data[0];
-          console.log("data",this.medData);
         })      
     })
   }

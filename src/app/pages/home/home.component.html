@@ -15,45 +15,9 @@
 
             <div class="swiper-wrapper">
 
-                <div class="swiper-slide cat fcol">
+                <div class="swiper-slide cat fcol" *ngFor="let data of browseMed">
 
-                    <p>Dolo</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>Beta</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>Trichup</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>paracetamol</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>Thyrox</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>zifi</p>
-
-                </div>
-
-                <div class="swiper-slide cat fcol">
-
-                    <p>Mamy</p>
+                    <p (click)="onBrowseMed(data)">{{data}}</p>
 
                 </div>
 
@@ -86,7 +50,7 @@
                 <div class="med-details">
                     <p class="prod-name" style="font-weight: 450;">{{data.medicine_name}}</p>
                     <div class="price frow">
-                        <p style="color: #DB4444;">{{data.mrp}}</p>
+                        <p style="color: #DB4444;">₹{{data.mrp}}</p>
                     </div>
                 </div>
 

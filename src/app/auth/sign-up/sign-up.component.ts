@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { FireStoreService } from 'src/app/Services/fire-store.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SignUpComponent {
 
   signupForm: FormGroup
   authService = inject(FireStoreService)
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router, private toast: ToastrService,) {
     this.signupForm = this.fb.group({
       userName: ['', [Validators.required]],
       email: ['',[Validators.required, Validators.email]],
@@ -21,9 +22,9 @@ export class SignUpComponent {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
     this.authService.signUp(this.signupForm.value).subscribe(res => {
       this.router.navigate(['/login'])
+      this.toast.success("User Register Successfully!")
     }
     )
   }

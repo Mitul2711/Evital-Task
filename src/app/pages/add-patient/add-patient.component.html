@@ -1,0 +1,83 @@
+<div class="main-div">
+
+    <div class="text">
+        <p>Add Patient</p>
+    </div>
+
+    <form class="example-form" [formGroup]="patientForm" (ngSubmit)="onSubmit()">
+        <div class="first-div">
+            <div style="width: 300px;">
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>First Name</mat-label>
+                    <input type="text" matInput formControlName="first_name" placeholder="first_name">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" matInput formControlName="last_name" placeholder="last_name">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="first-div">
+            <div>
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>Zip Code</mat-label>
+                    <input type="number" matInput formControlName="zipcode" placeholder="Zip Code">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="dob">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+        </div>
+        <div class="first-div">
+            <div>
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>Gender</mat-label>
+                    <mat-select formControlName="gender">
+                        <mat-option value="male">Male</mat-option>
+                        <mat-option value="female">Female</mat-option>
+                        <mat-option value="other">Other</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="example-full-width" style="width: 25rem;">
+                    <mat-label>Mobile</mat-label>
+                    <input type="number" matInput formControlName="mobile" placeholder="Mobile">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="sel">
+            <mat-form-field class="example-full-width" style="width: 25rem;">
+                <mat-label>Choose an option</mat-label>
+                <mat-select formControlName="blood_group">
+                    <mat-option value="A+">A+</mat-option>
+                    <mat-option value="A-">A-</mat-option>
+                    <mat-option value="B+">B+</mat-option>
+                    <mat-option value="B-">B-</mat-option>
+                    <mat-option value="O+">O+</mat-option>
+                    <mat-option value="O-">O-</mat-option>
+                    <mat-option value="AB+">AB+</mat-option>
+                    <mat-option value="AB-">AB-</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button mat-raised-button class="demo-button">
+                Submit
+            </button>
+        </div>
+
+    </form>
+
+</div>
