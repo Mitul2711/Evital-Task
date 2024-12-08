@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { DataShareService } from 'src/app/Services/data-share.service';
 import { FireStoreService } from 'src/app/Services/fire-store.service';
 import { MedicineService } from 'src/app/Services/medicine.service';
 
@@ -17,24 +19,27 @@ export class CartComponent implements OnInit {
   constructor(
     private medicineService: MedicineService,
     private toast: ToastrService,
-  private fireStoreService: FireStoreService) { }
+    private dataShareService: DataShareService,
+    private router: Router,
+    private fireStoreService: FireStoreService) { }
 
-  ngOnInit(): void {
-    let ids = JSON.parse(localStorage.getItem("medicineId"));
+  async ngOnInit() {
+    let ids = await this.fireStoreService.getMedicinesIds();
+
     ids.forEach(element => {
       this.medId = [];
       this.medId.push(element);
       this.medicineService.getMedicine(JSON.stringify(this.medId)).subscribe((res: any) => {
         if (res.data.length > 0) {
           const medicineWithQuantity = {
-            ...res.data[0], 
-            quantity: 1     
+            ...res.data[0],
+            quantity: 1
           };
           this.medData.push(medicineWithQuantity);
         }
       });
     });
-  
+
     this.calculateTotal();
   }
 
@@ -50,15 +55,19 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(data: any) {
-    this.medData = this.medData.filter(d => d.id == data.id);
     this.fireStoreService.deleteMedicineId(data.id);
+    this.medData = this.medData.filter(d => d.id !== data.id);
+    const storedIds = JSON.parse(localStorage.getItem('medicineId') || '[]');
+    const updatedIds = storedIds.filter((id: string) => id !== data.id);
+    localStorage.setItem('medicineId', JSON.stringify(updatedIds));
+    this.dataShareService.sendOrderCount(true);
   }
 
   calculateTotal() {
-    this.grandTotal = 0; 
+    this.grandTotal = 0;
     this.medData.forEach((item: any) => {
-      item.subtotal = parseFloat((item.mrp * item.quantity).toFixed(2)); 
-      this.grandTotal += item.subtotal; 
+      item.subtotal = parseFloat((item.mrp * item.quantity).toFixed(2));
+      this.grandTotal += item.subtotal;
     });
 
     this.grandTotal = parseFloat(this.grandTotal.toFixed(2));
@@ -85,9 +94,11 @@ export class CartComponent implements OnInit {
     }
 
     this.medicineService.checkOut(data).subscribe((res: any) => {
-      console.log(res);
-      
+      localStorage.setItem("shipping", res.data.shipping_charges);
+      localStorage.setItem("medData", JSON.stringify(this.medData));
+      this.router.navigate(['/order']);
     })
+
 
   }
 }

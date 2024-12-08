@@ -1,130 +1,250 @@
-.sec1 {
+// Variables
+$primary-color: #DB4444;
+$gray-light: #f5f5f5;
+$gray-border: #e0e0e0;
+$transition: all 0.3s ease;
 
-  padding: 2rem 12rem 0 12rem;
+// Mixins for responsive design
+@mixin responsive($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (max-width: 1024px) { @content; }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+  @if $breakpoint == small-mobile {
+    @media (max-width: 480px) { @content; }
+  }
+}
+
+// Global styles
+.frow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.fcol {
+  display: flex;
+  flex-direction: column;
+}
+
+// Section 1 - Browse Medicines
+.sec1 {
+  padding: 2rem max(5%, 12rem);
+  transition: $transition;
+
+  @include responsive(tablet) {
+    padding: 2rem 5%;
+  }
+
+  @include responsive(mobile) {
+    padding: 1rem 3%;
+  }
+
+  .block {
+    border-radius: 4px;
+    background-color: $primary-color;
+    height: 2.1rem;
+    width: 0.4rem;
+    transition: $transition;
+  }
+
+  .categories {
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+
+  .cato {
+    margin: 1.5rem 0;
+    .bro {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
 
   .swiper-wrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    padding: 1rem 0;
   }
 
   .cat {
-    margin-bottom: 2rem;
-    margin-top: 1.2rem;
-    padding: 0.6rem 0.4rem 0 0.4rem;
-    border: 2px solid gray;
-    border-radius: 6px;
-    height: 3rem;
-    width: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
+    padding: 1rem;
+    border: 2px solid $gray-border;
+    border-radius: 12px;
+    height: auto;
+    width: auto;
+    transition: $transition;
+    text-align: center;
+    cursor: pointer;
 
     p {
-      font-size: 18px;
+      font-size: 1rem;
       font-weight: 500;
+      margin: 0;
+      transition: $transition;
     }
 
+    &:hover {
+      border-color: $primary-color;
+      background-color: $primary-color;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(219, 68, 68, 0.2);
 
-
+      p {
+        color: white;
+      }
+    }
   }
 
-  .cat:hover {
+  hr {
+    margin: 2rem 0;
     border: none;
-    background-color: #DB4444;
-    color: white;
-
-    .white {
-      display: block;
-    }
-
-    .black {
-      display: none;
-    }
+    height: 1px;
+    background: $gray-border;
   }
-
 }
 
-.block {
-  border-radius: 3px;
-  background-color: #DB4444;
-  height: 2.1rem;
-  width: 0.9rem;
-}
-
-.frow {
-  display: flex;
-  flex-direction: row;
-}
-
-.categories {
-  padding-top: 0.5%;
-  padding-left: 1%;
-}
-
-
+// Section 2 - Medicine Cards
 .sec2 {
-  padding: 2rem 12rem 0 12rem;
+  padding: 2rem max(5%, 12rem);
+  transition: $transition;
 
-  .image-container {
-    position: relative;
-    display: inline-block;
+  @include responsive(tablet) {
+    padding: 2rem 5%;
   }
 
-  .image {
-    height: 9rem;
-    width: 10rem;
-  }
-
-  .cart-btn {
-    display: none;
-    position: absolute;
-    width: 16.8rem;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: black;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .image:hover+.cart-btn {
-    display: block;
-  }
-
-  .cart-btn:hover {
-    display: block;
+  @include responsive(mobile) {
+    padding: 1rem 3%;
   }
 
   .med-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .block {
+    border-radius: 4px;
+    background-color: $primary-color;
+    height: 2.1rem;
+    width: 0.4rem;
+    transition: $transition;
+  }
+
+  .categories {
+    color: $primary-color;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin: 0;
   }
 
   .med-card {
-    border:   2px solid gray;
-    border-radius: 4px;
-    height: 12rem;
-    width: 15rem;
+    border: 1px solid $gray-border;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: $transition;
+    height: auto;
+    width: auto;
+    background: white;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+      .cart-btn {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .image-container {
+    position: relative;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $gray-light;
+    aspect-ratio: 1;
+    overflow: hidden;
+
+    .image {
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+      transition: $transition;
+    }
+  }
+
+  .cart-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(100%);
+    transition: $transition;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $primary-color;
+    }
   }
 
   .med-details {
-    background-color: rgb(239, 239, 239);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 13px 20px;
-    height: 17px;
-  }
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid $gray-border;
 
+    .prod-name {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+      color: #333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $primary-color;
+      margin: 0.5rem 0 0 0;
+    }
+  }
 }
 
-.swiper-slide {
-  cursor: pointer;
+// Animation keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Add animation to cards
+.med-card {
+  animation: fadeIn 0.5s ease forwards;
+  @for $i from 1 through 20 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
 }

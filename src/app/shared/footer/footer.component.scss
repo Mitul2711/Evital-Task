@@ -1,447 +1,236 @@
-.frow {
+// Variables
+$primary-color: #DB4444;
+$text-light: #f5f5f5;
+$text-muted: rgba(255, 255, 255, 0.7);
+$footer-bg: #111827;
+$border-color: rgba(255, 255, 255, 0.1);
+$transition: all 0.3s ease;
+
+// Mixins
+@mixin responsive($breakpoint) {
+  @if $breakpoint == desktop {
+    @media (max-width: 1200px) { @content; }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: 992px) { @content; }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+}
+
+// Footer Container
+.footer {
+  background-color: $footer-bg;
+  color: $text-light;
+  padding: 4rem 0 1rem;
+  margin-top: 4rem;
+  
+  @include responsive(mobile) {
+    padding: 2rem 0 1rem;
+  }
+}
+
+// Main Content Space
+.space {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  gap: 3rem;
+  
+  @include responsive(tablet) {
+    padding: 0 1.5rem;
+    gap: 2rem;
+  }
+  
+  @include responsive(mobile) {
+    padding: 0 1rem;
+    gap: 2rem;
+    flex-direction: column;
+  }
+}
+
+// Newsletter Section
+.f-sec1 {
+  flex: 1;
+  
+  h4 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1.5rem;
+    background: linear-gradient(45deg, $primary-color, lighten($primary-color, 20%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  h6 {
+    font-size: 1.1rem;
+    margin: 0 0 0.5rem;
+    color: $text-light;
+  }
+  
+  p {
+    color: $text-muted;
+    margin: 0 0 1rem;
+  }
+  
+  .input-field {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: 0.5rem;
+    transition: $transition;
+    
+    &:focus-within {
+      border-color: $primary-color;
+    }
+    
+    input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: $text-light;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      
+      &::placeholder {
+        color: $text-muted;
+      }
+      
+      &:focus {
+        outline: none;
+      }
+    }
+    
+    button {
+      color: $text-light;
+      background: $primary-color;
+      border-radius: 6px;
+      transition: $transition;
+      
+      &:hover {
+        background: darken($primary-color, 10%);
+        transform: translateX(2px);
+      }
+    }
+  }
+}
+
+// Links Sections
+.f-sec3, .f-sec4 {
+  h6 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1.2rem;
+    color: $text-light;
   }
   
-  .footer {
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    background-color: black;
-    color: white;
-    margin-top: 2%;
-    margin-bottom: 0;
+  p {
+    color: $text-muted;
+    margin: 0 0 0.8rem;
+    cursor: pointer;
+    transition: $transition;
+    
+    &:hover {
+      color: $text-light;
+      transform: translateX(5px);
+    }
+  }
+}
+
+// Support Section
+.f-sec2 {
+  text-align: center;
+  
+  h6 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 1.2rem;
+    color: $text-light;
   }
   
-  .space {
-    height: 150px;
-    padding: 80px;
+  p {
+    color: $text-muted;
+    margin: 0 0 0.5rem;
+    
+    &:first-of-type {
+      color: $primary-color;
+    }
+  }
+}
+
+// Layout Classes
+.frow {
+  display: flex;
+  gap: 2rem;
+  
+  @include responsive(mobile) {
+    flex-direction: column;
+  }
+}
+
+.frow1 {
+  display: flex;
+  gap: 4rem;
+  
+  @include responsive(tablet) {
+    gap: 2rem;
+  }
+  
+  @include responsive(mobile) {
+    flex-wrap: wrap;
     justify-content: space-between;
   }
+}
+
+.fcol {
+  display: flex;
+  gap: 2rem;
   
-  .frow1 {
-    display: flex;
-    flex-direction: row;
+  @include responsive(mobile) {
+    gap: 1rem;
   }
+}
+
+// Copyright Section
+.copy {
+  text-align: center;
+  color: $text-muted;
+  font-size: 0.9rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+}
+
+// Dividers
+hr {
+  border-color: $border-color;
+  margin: 2rem 0;
   
-  .mhr, .mhr2 {
+  &.mhr, &.mhr2 {
     display: none;
-  }
-  
-  hr {
-    border-color: rgb(255, 255, 255);
-  }
-  
-  .f-sec1 {
-    h6 {
-      font-size: 15px;
-    }
-  
-    h4 {
-      font-size: 28px;
-    }
-  
-    p {
-      font-size: 13px;
-    }
-  
-    .input-field {
-      display: flex;
-      flex-direction: row;
-      border: 2px solid white;
-      border-radius: 5px;
-      position: relative;
-    }
-  
-    .input-field input {
-      padding-right: 50px;
-      color: white;
-      border: none;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      background-color: black;
-      color: rgb(77, 77, 77);
-      padding: 5px;
-    }
-  
-    .input-field input:focus {
-      outline: none;
-    }
-  
-    .input-field span {
-      margin-top: 5px;
-      padding-right: 5px;
-    }
-  }
-  
-  .f-sec2 {
-    .add {
-      font-size: 13px;
-      word-wrap: break-word;
-      white-space: pre-wrap;
-    }
-  
-    h6 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-  }
-  
-  .f-sec3 {
-    p {
-      font-size: 13px;
-    }
-  
-    h6 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-  }
-  
-  .f-sec4 {
-    margin-left: 236px;
-  
-    p {
-      font-size: 13px;
-    }
-  
-    h6 {
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-  }
-  
-  .f-sec5 {
-    p {
-      margin-left: 10px;
-      font-size: 13px;
-    }
-  
-    h6 {
-      font-size: 20px;
-      margin-left: 10px;
-      margin-bottom: 20px;
-    }
-  
-    .qr {
-      font-size: 8rem;
-    }
-  
-    .play {
-      margin-top: 10px;
-      padding: 3px;
-      border: 1px solid white;
-      border-radius: 5px;
-  
-      .get {
-        font-size: 7px;
-        margin-bottom: 0;
-      }
-  
-      .store {
-        font-size: 14px;
-        margin-bottom: 1px;
-      }
-  
-      img {
-        height: 38px;
-        width: 40px;
-      }
-    }
-  
-    .icon {
-      margin-top: 5px;
-      justify-content: space-around;
-  
-      img {
-        height: 25px;
-        width: 25px;
-      }
-    }
-  }
-  
-  .copy {
-    display: flex;
-    justify-content: center;
-    color: rgb(111, 104, 104);
-    padding-bottom: 20px;
-  }
-  
-  @media screen and (max-width: 450px) {
-    .f-sec5 {
-      display: none;
-    }
-  
-    .space {
-      padding: 0;
-      justify-content: unset;
-    }
-  
-    .frow {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .frow1 {
-      margin-top: 15px;
-    }
-  
-    .f-sec1 {
-      h4 {
-        margin-top: 15px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-  
-      h6 {
-        font-size: 12px;
-        margin-left: 2rem;
-      }
-  
-      p {
-        font-size: 10px;
-        margin-left: 2rem;
-      }
-  
-      .input-field {
-        display: flex;
-        flex-direction: row;
-        border: 2px solid white;
-        border-radius: 5px;
-        position: relative;
-        width: 12rem;
-        height: 30px;
-        margin-left: 30px;
-        margin-right: 15px;
-      }
-  
-      .input-field input {
-        width: 10rem;
-      }
-  
-      .input-field span {
-        margin-top: 2px;
-      }
-    }
-  
-    .fcol {
-      display: flex;
-      flex-direction: row;
-    }
-  
-    .f-sec3 {
-      h6 {
-        margin-left: 90px;
-        font-size: 12px;
-      }
-  
-      p {
-        font-size: 10px;
-        margin-left: 40px;
-      }
-    }
-  
-    .f-sec4 {
-      margin-left: 0;
-  
-      h6 {
-        margin-left: 20px;
-        font-size: 12px;
-      }
-  
-      p {
-        font-size: 10px;
-      }
-    }
-  
-    .mhr {
+    
+    @include responsive(mobile) {
       display: block;
-      border-left: 1px solid rgb(255, 255, 255);
-      margin: 0 30px 0 30px;
-    }
-  
-    .mhr2 {
-      display: block;
-      border-color: rgb(255, 255, 255);
-      padding: 0;
-    }
-  
-    .ele2 {
-      margin-right: 20px;
-    }
-  
-    .f-sec2 {
-      h6 {
-        display: flex;
-        justify-content: center;
-        font-size: 12px;
-        margin-bottom: 8px;
-      }
-  
-      p, .add {
-        font-size: 10px;
-      }
-  
-      .add {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 5px;
-  
-        br {
-          display: none;
-        }
-      }
-  
-      .ctr {
-        display: flex;
-        justify-content: center;
-      }
-    }
-  
-    .copy {
-      font-size: 10px;
-    }
-  
-    .chr {
-      margin-top: 4rem;
+      margin: 1.5rem 0;
     }
   }
-  
-  @media screen and (max-width: 395px) {
-    .space {
-      padding: 0;
-      justify-content: unset;
-    }
-  
-    .frow {
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .frow1 {
-      margin-top: 15px;
-    }
-  
-    .f-sec1 {
-      h4 {
-        margin-top: 15px;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-  
-      h6 {
-        font-size: 12px;
-        margin-left: 1.2rem;
-      }
-  
-      p {
-        font-size: 10px;
-        margin-left: 1.2rem;
-      }
-  
-      .input-field {
-        display: flex;
-        flex-direction: row;
-        border: 2px solid white;
-        border-radius: 5px;
-        position: relative;
-        width: 12rem;
-        height: 30px;
-        margin-left: 10px;
-        margin-right: 15px;
-      }
-  
-      .input-field input {
-        width: 10rem;
-      }
-  
-      .input-field span {
-        margin-top: 2px;
-      }
-    }
-  
-    .fcol {
-      display: flex;
-      flex-direction: row;
-    }
-  
-    .f-sec3 {
-      h6 {
-        margin-left: 80px;
-        font-size: 12px;
-      }
-  
-      p {
-        font-size: 10px;
-        margin-left: 25px;
-      }
-  
-      .ele {
-        margin-right: 8px;
-      }
-    }
-  
-    .f-sec4 {
-      h6 {
-        margin-left: 20px;
-        font-size: 12px;
-      }
-  
-      p {
-        font-size: 10px;
-      }
-    }
-  
-    .mhr {
-      border-left: 1px solid rgb(255, 255, 255);
-      margin: 0 30px 0 30px;
-    }
-  
-    .mhr2 {
-      border-color: rgb(255, 255, 255);
-      padding: 0;
-    }
-  
-    .ele2 {
-      margin-right: 20px;
-    }
-  
-    .f-sec2 {
-      h6 {
-        display: flex;
-        justify-content: center;
-        font-size: 12px;
-        margin-bottom: 8px;
-      }
-  
-      p, .add {
-        font-size: 10px;
-      }
-  
-      .add {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 5px;
-  
-        br {
-          display: none;
-        }
-      }
-  
-      .ctr {
-        display: flex;
-        justify-content: center;
-      }
-    }
-  
-    .copy {
-      font-size: 10px;
-    }
-  
-    .f-sec5 {
-      display: none;
-    }
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer > * {
+  animation: fadeInUp 0.5s ease-out forwards;
+}

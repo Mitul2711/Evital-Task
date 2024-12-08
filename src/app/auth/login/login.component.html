@@ -16,7 +16,11 @@
                     </mat-form-field>
                     <mat-form-field class="example-full-width">
                         <mat-label>Password</mat-label>
-                        <input type="Password" matInput formControlName="password">
+                        <input [type]="visibility ? 'text' : 'password'" matInput formControlName="password">
+                        <span matSuffix (click)="hideShowPass()" style="cursor: pointer;padding-right: 5px;">
+                            <mat-icon *ngIf="visibility">visibility</mat-icon>
+                            <mat-icon *ngIf="!visibility">visibility_off</mat-icon>
+                          </span>
                     </mat-form-field>
 
                     <div class="btn-div">
@@ -24,9 +28,6 @@
                         <button mat-stroked-button color="accent" class="btn-block" [disabled]="loginForm.invalid">
                             Log in
                         </button>
-
-
-                        <p>Forgot Password?</p>
 
                     </div>
 
@@ -45,3 +46,4 @@
     </div>
 
 </div>
+

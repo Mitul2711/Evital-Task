@@ -1,0 +1,239 @@
+// Variables
+$primary-color: #DB4444;
+$secondary-color: #3498db;
+$text-primary: #2d3436;
+$text-secondary: #636e72;
+$border-color: #e0e0e0;
+$transition: all 0.3s ease;
+$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin responsive($breakpoint) {
+  @if $breakpoint == desktop {
+    @media (max-width: 1200px) { @content; }
+  }
+  @if $breakpoint == tablet {
+    @media (max-width: 1024px) { @content; }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+}
+
+// Main Card Container
+.cart-card {
+  margin: 2rem auto;
+  max-width: 1400px;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  box-shadow: $shadow-lg;
+  background: white;
+}
+
+// Checkout Container
+.checkout-div {
+  padding: 2rem;
+  
+  @include responsive(tablet) {
+    padding: 1.5rem;
+  }
+  
+  @include responsive(mobile) {
+    padding: 1rem;
+  }
+}
+
+// Layout Classes
+.frow, .frow1 {
+  display: flex;
+  gap: 2rem;
+  
+  @include responsive(tablet) {
+    flex-direction: column;
+  }
+}
+
+.fcol {
+  display: flex;
+  flex-direction: column;
+}
+
+// Bill Form Section
+.bill-form {
+  flex: 2;
+  background: #f8f9fa;
+  border-radius: 16px;
+  padding: 2rem;
+  
+  @include responsive(mobile) {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 2rem;
+  }
+}
+
+// Form Layout
+.checkout-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-field {
+    width: 100%;
+    margin: 0;
+    
+    // Material Form Field Customization
+    ::ng-deep .mat-form-field-wrapper {
+      padding-bottom: 1rem;
+    }
+    
+    ::ng-deep .mat-form-field-outline {
+      background: white;
+      border-radius: 8px;
+    }
+    
+    input, mat-select {
+      font-size: 1rem;
+      padding: 0.5rem 0;
+    }
+  }
+  
+  // Full Width Fields
+  .form-field.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+// Checkbox Styling
+.save-info {
+  margin-top: 1rem;
+  
+  ::ng-deep .mat-checkbox-label {
+    font-size: 0.9rem;
+    color: $text-secondary;
+  }
+}
+
+// Bill Card Section
+.bill-card {
+  flex: 1;
+  min-width: 300px;
+  
+  .bill-box {
+    background: #f8f9fa;
+    border-radius: 16px;
+    box-shadow: $shadow-sm;
+    
+    .bill-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid $border-color;
+      
+      mat-card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $text-primary;
+        margin: 0;
+      }
+    }
+    
+    mat-card-content {
+      padding: 1.5rem;
+    }
+    
+    .bill-amo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      
+      p {
+        margin: 0;
+        font-size: 1rem;
+        color: $text-secondary;
+        
+        &:last-child {
+          font-weight: 600;
+          color: $text-primary;
+        }
+      }
+    }
+    
+    hr {
+      border: none;
+      border-top: 1px solid $border-color;
+      margin: 0.5rem 0;
+    }
+    
+    // Place Order Button
+    .proceed {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      background-color: $primary-color;
+      color: white;
+      border-radius: 8px;
+      transition: $transition;
+      
+      &:hover:not([disabled]) {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+      }
+      
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+  }
+}
+
+// Return to Home Link
+.route-to-signup {
+  text-align: center;
+  margin-top: 1.5rem;
+  
+  small {
+    font-size: 0.9rem;
+    color: $text-secondary;
+    
+    a {
+      color: $primary-color;
+      font-weight: 600;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      transition: $transition;
+      
+      &:hover {
+        color: darken($primary-color, 10%);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Animation
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cart-card {
+  animation: fadeIn 0.3s ease-out;
+}

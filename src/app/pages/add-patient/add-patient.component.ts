@@ -19,10 +19,10 @@ export class AddPatientComponent {
     private dataShareService: DataShareService, 
     private fireStoreService: FireStoreService) {
     this.patientForm = this.fb.group({
-      mobile: ['', Validators.required],
+      mobile: ['', [Validators.required,  Validators.pattern(/^[0-9]{10}$/)]],
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
-      zipcode: ['', Validators.required],
+      zipcode: ['', [Validators.required, Validators.pattern(/^[0-9]{6}$/)]],
       dob: ['', Validators.required],
       gender: ['', Validators.required],
       blood_group: ['', Validators.required],

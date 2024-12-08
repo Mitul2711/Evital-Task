@@ -11,22 +11,16 @@
   
       <div class="opt">
         <div>
-          <p>Home</p>
+          <p (click)="onHome()">Home</p>
         </div>
         <div>
           <p (click)="onPatient()">Patient</p>
         </div>
-        <div>
-          <p>About</p>
-        </div>
-        <div>
-          <p>Orders</p>
-        </div>
       </div>
   
       <div class="combined">
-      <div class="input-field">
-        <input matInput type="text" placeholder="What are you looking for" (keyup.enter)="onSearch($event)">
+      <div class="input-field" *ngIf="login">
+        <input matInput type="text" placeholder="Search Medicines..." (keyup.enter)="onSearch($event)">
         <div style="background-color: rgb(235, 235, 235);">
           <div class="material-symbols-outlined srch">
             <mat-icon>search</mat-icon>
@@ -35,7 +29,7 @@
         </div>
       </div>
   
-      <div class="icon">
+      <div class="icon" *ngIf="login">
         <div class="cart cur">
           <mat-icon [matBadge]="badge" (click)="onCart()">shopping_cart</mat-icon>
         </div>

@@ -10,6 +10,7 @@ import { MaterialModule } from '../modules/material.module';
 import { AddPatientComponent } from './add-patient/add-patient.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PlaceOrderComponent } from './place-order/place-order.component';
+import { OrderPlacedComponent } from './order-placed/order-placed.component';
 
 
 
@@ -22,6 +23,7 @@ import { PlaceOrderComponent } from './place-order/place-order.component';
     PatientComponent,
     AddPatientComponent,
     PlaceOrderComponent,
+    OrderPlacedComponent,
   ],
   imports: [
     CommonModule,

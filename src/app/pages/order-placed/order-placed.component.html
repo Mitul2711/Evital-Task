@@ -1,0 +1,64 @@
+<div class="order-success-container">
+    <!-- Success Header -->
+    <div class="success-card">
+        <div class="success-header">
+            <div class="success-icon">
+                <mat-icon>check_circle</mat-icon>
+            </div>
+            <h1>Order Placed Successfully!</h1>
+            <p>Thank you for your order. Your medicines are on the way!</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="order-info">
+            <div class="info-row">
+                <div class="info-item">
+                    <mat-icon>inventory_2</mat-icon>
+                    <div class="info-content">
+                        <span class="label">Order Number</span>
+                        <span class="value">{{orderDetails.order_number}}</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <mat-icon>event</mat-icon>
+                    <div class="info-content">
+                        <span class="label">Order Date</span>
+                        <span class="value">{{date}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pharmacy Details -->
+        <div class="pharmacy-details">
+            <div class="info-item">
+                <mat-icon>location_on</mat-icon>
+                <div class="info-content">
+                    <span class="label">Medical Location</span>
+                    <span class="value">{{orderDetails.pharmacy_name}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div class="summary-row">
+                <span>Total Amount</span>
+                <span class="total">₹{{total}}</span>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button mat-raised-button color="primary" class="track-btn">
+                <mat-icon>local_shipping</mat-icon>
+                Track Order
+            </button>
+            <button mat-stroked-button class="shop-btn" (click)="returnHome()">
+                <mat-icon>shopping_bag</mat-icon>
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+</div>

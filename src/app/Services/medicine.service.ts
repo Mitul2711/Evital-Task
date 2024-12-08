@@ -17,7 +17,7 @@ export class MedicineService {
     formData.append('apikey', this.apikey);
     formData.append('medicine_ids', data);
 
-    return this.http.post(`${this.url}/medicines/view`, formData);
+    return this.http.post(`${this.url}medicines/view`, formData);
 
   }
 
@@ -26,7 +26,7 @@ export class MedicineService {
     formData.append('apikey', this.apikey);
     formData.append('searchstring', data);
 
-    return this.http.post(`${this.url}/medicines/search`, formData);
+    return this.http.post(`${this.url}medicines/search`, formData);
   }
 
   addpatient(data: any) {
@@ -40,7 +40,7 @@ export class MedicineService {
     formData.append('gender', data.gender);
     formData.append('blood_group', data.dob.blood_group);
 
-    return this.http.post(`${this.url}/patients/add`, formData); 
+    return this.http.post(`${this.url}patients/add`, formData); 
   }
 
   getPatient(data: any) {
@@ -48,7 +48,7 @@ export class MedicineService {
     formData.append('apikey', this.apikey);
     formData.append('patient_id', data);
 
-    return this.http.post(`${this.url}/patients/view`, formData); 
+    return this.http.post(`${this.url}patients/view`, formData); 
   }
 
   checkOut(data: any) {
@@ -59,8 +59,30 @@ export class MedicineService {
     formData.append('longitude', data.longitude);
     formData.append('distance', data.distance);
 
-    return this.http.post(`${this.url}/orders/checkout`, formData); 
+    return this.http.post(`${this.url}orders/checkout`, formData); 
   } 
+
+  placeOrder(data: any) {
+    
+    const formData = new FormData();
+    formData.append('apikey', this.apikey);
+    formData.append('items', data.items);
+    formData.append('latitude', data.latitude);
+    formData.append('longitude', data.longitude);
+    formData.append('delivery_type', data.delivery_type);
+    formData.append('patient_name', data.patient_name);
+    formData.append('mobile', data.mobile);
+    formData.append('address', data.address);
+    formData.append('city', data.city);
+    formData.append('state', data.state);
+    formData.append('auto_assign', data.auto_assign);
+    formData.append('chemist_id', data.chemist_id);
+    formData.append('zipcode', data.zipcode);
+
+    return this.http.post(`${this.url}orders/place_order`, formData); 
+  }
+
+  
 
 }
 

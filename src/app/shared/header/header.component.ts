@@ -11,15 +11,20 @@ import { MedicineService } from 'src/app/Services/medicine.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  login: boolean;
   
   constructor(private router: Router, 
     private fireService: FireStoreService, 
     private toast: ToastrService,
-    private dataShareService: DataShareService) {}
+    private dataShareService: DataShareService) {
+      dataShareService.orderCount$.subscribe(res => {
+        this.login = localStorage.getItem("login") == "true" ? true : false;
+      })
+    }
 
   badge: any;
   ngOnInit(): void {
-    // this.badge = JSON.parse(localStorage.getItem("medicineId")).length;
     this.dataShareService.orderCount$.subscribe((res: any) => {
       this.badge = JSON.parse(localStorage.getItem("medicineId")).length;
     })
@@ -30,6 +35,7 @@ export class HeaderComponent implements OnInit {
     this.toast.success("Logout Successfully!")
     this.router.navigate(['/login']);
     localStorage.clear();
+    this.login = localStorage.getItem("login") == "true" ? true : false;
   }
 
   onSearch(event: any) {
@@ -48,5 +54,9 @@ export class HeaderComponent implements OnInit {
 
   onPatient() {
     this.router.navigate(['/patient']);
+  }
+
+  onHome() {
+    this.router.navigate(['/home'])
   }
 }

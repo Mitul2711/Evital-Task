@@ -50,10 +50,10 @@ export class FireStoreService {
 
   async addPatient(patientId: string) {
     try {
-      const user = await this.authfire.currentUser;
+      const userId = localStorage.getItem("userId");
   
-      if (user) {
-        const userId = user.uid;
+  
+      if (userId) {
   
         const patientsDocRef = this.firestore
           .collection('users')
@@ -82,10 +82,10 @@ export class FireStoreService {
     console.log('medicineid',medicineid);
     
     try {
-      const user = await this.authfire.currentUser;
+      const userId = localStorage.getItem("userId");
   
-      if (user) {
-        const userId = user.uid;
+  
+      if (userId) {
   
         const patientsDocRef = this.firestore
           .collection('users')
@@ -143,11 +143,10 @@ export class FireStoreService {
   
   async getMedicinesIds() {
     try {
-     
-      const user = await this.authfire.currentUser;
+      const userId = localStorage.getItem("userId");
   
-      if (user) {
-        const userId = user.uid;
+  
+      if (userId) {
   
         const patientsDocRef = this.firestore
           .collection('users')
@@ -178,10 +177,10 @@ export class FireStoreService {
 
   async deleteMedicineId(medicineid: any) {
     try {
-      const user = await this.authfire.currentUser;
+      const userId = localStorage.getItem("userId");
   
-      if (user) {
-        const userId = user.uid;
+  
+      if (userId) {
   
         const db = getFirestore();
         const patientsDocRef = doc(db, 'users', userId, 'medicineId', 'medicineList');

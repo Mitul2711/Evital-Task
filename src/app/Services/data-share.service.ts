@@ -36,4 +36,12 @@ export class DataShareService {
     this.gridData.next(data);
   }
 
+  private orderPlaced = new BehaviorSubject<any>(null);
+  public orderPlaced$ = this.orderPlaced.asObservable();
+
+  sendOrderPlaced(data: any): void {
+    this.orderPlaced.next(data);
+  }
+
+
 }

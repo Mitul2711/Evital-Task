@@ -1,5 +1,5 @@
 <div class="cart-container">
-    <div class="cart-item" *ngFor="let item of medData; let i = index">
+    <div class="cart-item"  [class.loading]="item.loading" *ngFor="let item of medData;">
         <div class="medicine-details">
             <h3 class="medicine-name">{{ item.medicine_name }}</h3>
             <p class="medicine-price">Price: ${{ item.mrp }}</p>

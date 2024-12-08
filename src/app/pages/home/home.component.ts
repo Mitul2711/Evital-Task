@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { lastValueFrom } from 'rxjs';
 import { DataShareService } from 'src/app/Services/data-share.service';
 import { MedicineService } from 'src/app/Services/medicine.service';
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private medicineService: MedicineService,
     private router: Router,
+    private spinner: NgxSpinnerService,
     private dataShareService: DataShareService
   ) {
 

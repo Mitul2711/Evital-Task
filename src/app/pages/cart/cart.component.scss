@@ -1,133 +1,225 @@
+// Variables
+$primary-color: #DB4444;
+$secondary-color: #3498db;
+$success-color: #27ae60;
+$danger-color: #e74c3c;
+$text-primary: #2d3436;
+$text-secondary: #636e72;
+$border-color: #e0e0e0;
+$transition: all 0.3s ease;
+$shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+$shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin responsive($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (max-width: 1024px) { @content; }
+  }
+  @if $breakpoint == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+}
+
+// Cart Container
 .cart-container {
-    width: 450px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px auto;
+  width: min(800px, 95%);
+  border-radius: 16px;
+  background-color: white;
+  box-shadow: $shadow-lg;
+  margin: 2rem auto;
+  overflow: hidden;
+  animation: slideIn 0.3s ease-out;
+
+  @include responsive(mobile) {
+    width: 95%;
+    margin: 1rem auto;
   }
-  
-  .cart-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+}
+
+// Cart Items
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid $border-color;
+  transition: $transition;
+
+  @include responsive(mobile) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    text-align: center;
   }
-  
-  .medicine-details {
-    flex: 1;
+
+  &:hover {
+    background-color: #f8f9fa;
   }
-  
+}
+
+// Medicine Details
+.medicine-details {
   .medicine-name {
-    font-size: 16px;
-    margin: 0;
-    color: #333;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 0.5rem 0;
   }
-  
+
   .medicine-price {
-    font-size: 14px;
-    margin: 5px 0;
-    color: #555;
+    font-size: 1rem;
+    color: $text-secondary;
+    margin: 0;
   }
-  
-  .quantity-controls {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-  }
-  
+}
+
+// Quantity Controls
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  justify-content: center;
+
   .quantity-btn {
-    width: 30px;
-    height: 30px;
-    background-color: #3498db;
-    color: #fff;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
     border: none;
-    border-radius: 4px;
-    font-size: 18px;
+    background-color: #f1f2f6;
+    color: $text-primary;
+    font-size: 1.2rem;
     cursor: pointer;
+    transition: $transition;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
-  
-  .quantity-btn:hover {
-    background-color: #2980b9;
-  }
-  
+
   .medicine-count {
-    font-size: 16px;
-    color: #333;
-  }
-  
-  .subtotal {
-    flex: 1;
-    font-size: 14px;
-    font-weight: bold;
-    color: #27ae60;
-    text-align: right;
-  }
-  
-  .remove-btn {
-    padding: 5px 10px;
-    // margin-left: 10px;
-    font-size: 14px;
-    color: #e74c3c;
-    background: none;
-    border: 1px solid #e74c3c;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  
-  .remove-btn:hover {
-    background-color: #e74c3c;
-    color: #fff;
-  }
-  
-
-
-  
-  .empty-message {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $text-primary;
+    min-width: 2rem;
     text-align: center;
-    font-size: 16px;
-    color: #555;
-    margin-top: 20px;
   }
-  
-  .cart-footer {
+}
+
+// Subtotal
+.subtotal {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $primary-color;
+  margin: 0;
+  text-align: right;
+
+  @include responsive(mobile) {
     text-align: center;
-    margin-top: 20px;
   }
-  
+}
+
+// Remove Button
+.remove-btn {
+  padding: 0.6rem 1rem;
+  border: 2px solid $danger-color;
+  border-radius: 8px;
+  background: transparent;
+  color: $danger-color;
+  font-weight: 600;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    background-color: $danger-color;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Cart Footer
+.cart-footer {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-top: 2px solid $border-color;
+
   .total {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px; /* Adds space below the Total text */
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
-  
-  .rem-btn {
-    margin-top: 10px; /* Optional: Adjusts space for button if needed */
-  }
-  
+
   .checkout-btn {
     width: 100%;
-    padding: 10px 15px;
-    font-size: 16px;
-    background-color: #e74c3c;
-    color: #fff;
+    padding: 1rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
+    background-color: $primary-color;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: $transition;
+
+    &:hover {
+      background-color: darken($primary-color, 10%);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
   }
-  
-  .checkout-btn:hover {
-    background-color: #c0392b;
+}
+
+// Empty Cart Message
+.empty-message {
+  padding: 4rem 2rem;
+  text-align: center;
+  color: $text-secondary;
+  font-size: 1.1rem;
+  background-color: #f8f9fa;
+}
+
+// Animations
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Optional Loading State
+.cart-item.loading {
+  .medicine-name,
+  .medicine-price,
+  .medicine-count,
+  .subtotal {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
