@@ -6,6 +6,7 @@ import { MedicineInfoComponent } from '../medicine-info/medicine-info.component'
 import { MatDialog } from '@angular/material/dialog';
 import { FireStoreService } from 'src/app/Services/fire-store.service';
 import { ToastrService } from 'ngx-toastr';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-view-medicine',
@@ -16,6 +17,7 @@ export class ViewMedicineComponent implements OnInit {
 
   medicines: any[] = [];
   medId: any[] = [];
+  available: boolean = true;
   readonly dialog = inject(MatDialog);
 
   constructor(private medicineService: MedicineService,
@@ -31,30 +33,59 @@ export class ViewMedicineComponent implements OnInit {
       this.medicines = [];
       this.medicineService.searchMedicine(medicine).subscribe((res: any) => {
         this.medicines = res.data.result;
+        const medicineObservables = this.medicines.map((ele: any) => {
+          return this.medicineService.getMedicine(JSON.stringify([ele.medicine_id])).pipe(
+            map((res: any) => {
+              return {
+                ...ele,
+                available: res.data.length > 0,
+              };
+            })
+          );
+        });
+        
+        forkJoin(medicineObservables).subscribe((updatedMedicines: any[]) => {
+          this.medicines = updatedMedicines;
+        });
+        
+        
       })
     })
+    
+   
+
   }
 
   addToCart(data: any) {
-    
-    if (this.medId.length > 0) {
-      if (!this.medId.includes(data.medicine_id)) {
-        this.medId.push(data.medicine_id);
-        this.toast.success("Medicine Added To Cart")
-        localStorage.setItem("medicineId", JSON.stringify(this.medId));
-        this.fireStoreService.addMedicineCart(data.medicine_id);
-        this.dataShareService.sendOrderCount(this.medId);
+    let id = [];
+    id.push(data.medicine_id);
+    this.medicineService.getMedicine(JSON.stringify(id)).subscribe((res: any) => {
+
+      if(res.data.length == 0) {
+        this.toast.info("Medicine Is Not Available");
       } else {
-        this.toast.info("Medicine Already In Cart")
-        console.log(`Medicine ID ${data.medicine_id} is already in the cart.`);
-        
+        if (this.medId.length > 0) {
+          if (!this.medId.includes(data.medicine_id)) {
+            this.medId.push(data.medicine_id);
+            this.toast.success("Medicine Added To Cart")
+            localStorage.setItem("medicineId", JSON.stringify(this.medId));
+            this.fireStoreService.addMedicineCart(data.medicine_id);
+            this.dataShareService.sendOrderCount(this.medId);
+          } else {
+            this.toast.info("Medicine Already In Cart")
+            console.log(`Medicine ID ${data.medicine_id} is already in the cart.`);
+            
+          }
+        } else {
+          this.medId.push(data.medicine_id);
+          localStorage.setItem("medicineId", JSON.stringify(this.medId));
+            this.fireStoreService.addMedicineCart(data.medicine_id);
+            this.dataShareService.sendOrderCount(this.medId);
+        }
       }
-    } else {
-      this.medId.push(data.medicine_id);
-      localStorage.setItem("medicineId", JSON.stringify(this.medId));
-        this.fireStoreService.addMedicineCart(data.medicine_id);
-        this.dataShareService.sendOrderCount(this.medId);
-    }
+
+    })    
+   
 
   }
 

@@ -50,8 +50,7 @@ export class PatientComponent implements OnInit {
           this.refreshGrid();
         })
       });
-
-      this.refreshGrid();
+      this.dialog.closeAll();
     })
   }
 
@@ -60,6 +59,8 @@ export class PatientComponent implements OnInit {
   }
 
   refreshGrid() {
+    console.log("refresh");
+    
     this.patientData = [...this.patientData];
   }
 

@@ -108,3 +108,21 @@
   .card {
     margin: 10px;
   }
+
+  .avail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .available {
+    padding-top: 10px;
+    padding-left: 10px;
+    color: #27ae60;
+  }
+
+  .notavailable {
+    padding-left: 10px;
+    padding-top: 10px;
+    color: #e74c3c;
+  }

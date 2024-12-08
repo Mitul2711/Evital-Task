@@ -11,7 +11,8 @@ import { MedicineService } from 'src/app/Services/medicine.service';
 })
 export class AddPatientComponent {
 
-  patientForm: FormGroup
+  patientForm: FormGroup;
+  maxDate: Date;
 
   constructor(private fb: FormBuilder, 
     private medicineService: MedicineService,
@@ -25,7 +26,13 @@ export class AddPatientComponent {
       dob: ['', Validators.required],
       gender: ['', Validators.required],
       blood_group: ['', Validators.required],
-    })
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+    });
+
+    this.maxDate = new Date(); 
+
   }
 
   onSubmit() {

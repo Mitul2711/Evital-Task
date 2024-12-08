@@ -51,5 +51,16 @@ export class MedicineService {
     return this.http.post(`${this.url}/patients/view`, formData); 
   }
 
+  checkOut(data: any) {
+    const formData = new FormData();
+    formData.append('apikey', this.apikey);
+    formData.append('items', data.items);
+    formData.append('latitude', data.latitude);
+    formData.append('longitude', data.longitude);
+    formData.append('distance', data.distance);
+
+    return this.http.post(`${this.url}/orders/checkout`, formData); 
+  } 
+
 }
 

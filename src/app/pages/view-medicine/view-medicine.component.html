@@ -6,7 +6,11 @@
             <div class="medicine-info">
                 <h3 class="medicine-name">{{data.medicine_name}}</h3>
                 <h3 class="manufacturer-name">{{data.manufacturer_name}}</h3>
-                <p class="medicine-price">₹{{data.mrp}}</p>
+                <div class="avail">
+                    <p class="medicine-price">₹{{data.mrp}}</p>
+                    <small *ngIf="data.available" class="available">Available</small>
+                    <small *ngIf="!data.available" class="notavailable">Not Available</small>
+                </div>
                 <div class="medicine-actions">
                     <button class="info-btn" (click)="onInfo(data)">Info</button>
                     <button class="add-cart-btn" (click)="addToCart(data)">Add to Cart</button>

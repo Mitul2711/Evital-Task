@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
 
   medId: any[] = [];
   medData: any[] = [];
-  quantity = 1;
+  grandTotal: number = 0;
 
   constructor(
     private medicineService: MedicineService,
@@ -26,20 +26,26 @@ export class CartComponent implements OnInit {
       this.medId.push(element);
       this.medicineService.getMedicine(JSON.stringify(this.medId)).subscribe((res: any) => {
         if (res.data.length > 0) {
-          this.medData.push(res.data[0]);
+          const medicineWithQuantity = {
+            ...res.data[0], 
+            quantity: 1     
+          };
+          this.medData.push(medicineWithQuantity);
         }
-      })
+      });
     });
+  
+    this.calculateTotal();
   }
 
 
   increaseQuantity(item: any) {
-    this.quantity++;
+    item.quantity++;
   }
 
   decreaseQuantity(item: any) {
-    if (this.quantity > 1) {
-      this.quantity--;
+    if (item.quantity > 1) {
+      item.quantity--;
     }
   }
 
@@ -48,8 +54,40 @@ export class CartComponent implements OnInit {
     this.fireStoreService.deleteMedicineId(data.id);
   }
 
+  calculateTotal() {
+    this.grandTotal = 0; 
+    this.medData.forEach((item: any) => {
+      item.subtotal = parseFloat((item.mrp * item.quantity).toFixed(2)); 
+      this.grandTotal += item.subtotal; 
+    });
+
+    this.grandTotal = parseFloat(this.grandTotal.toFixed(2));
+    localStorage.setItem("total", JSON.stringify(this.grandTotal));
+    return this.grandTotal
+  }
 
   proceedToCheckout() {
-    alert('Checkout functionality coming soon!');
+    let id = [];
+
+    this.medData.forEach(ele => {
+      let item = {
+        quantity: ele.quantity,
+        medicine_id: ele.id
+      }
+      id.push(item);
+    });
+
+    let data = {
+      latitude: 12.970612,
+      longitude: 77.6382433,
+      distance: 5,
+      items: JSON.stringify(id)
+    }
+
+    this.medicineService.checkOut(data).subscribe((res: any) => {
+      console.log(res);
+      
+    })
+
   }
 }
