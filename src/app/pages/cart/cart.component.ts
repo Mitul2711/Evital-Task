@@ -45,6 +45,8 @@ export class CartComponent implements OnInit {
 
 
   increaseQuantity(item: any) {
+    console.log(item);
+    
     item.quantity++;
   }
 

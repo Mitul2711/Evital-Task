@@ -50,7 +50,7 @@ export class HomeComponent implements OnInit {
 
 
   onBrowseMed(data: any) {
-    this.dataShareService.sendMedicineName(data);
+    localStorage.setItem("input", data);
     this.router.navigate(['/medicine']);    
   }
   

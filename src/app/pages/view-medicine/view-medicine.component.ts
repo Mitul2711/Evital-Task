@@ -29,7 +29,8 @@ export class ViewMedicineComponent implements OnInit {
 
     this.medId = localStorage.getItem("medicineId") ? JSON.parse(localStorage.getItem("medicineId")) : [];    
 
-    this.dataShareService.medicineName$.subscribe(medicine => {
+    // this.dataShareService.medicineName$.subscribe(medicine => {
+      let medicine = localStorage.getItem("input");
       this.medicines = [];
       this.medicineService.searchMedicine(medicine).subscribe((res: any) => {
         this.medicines = res.data.result;
@@ -50,12 +51,12 @@ export class ViewMedicineComponent implements OnInit {
         
         
       })
-    })
+    // })
     
    
 
   }
-
+  cart: any[] = [];
   addToCart(data: any) {
     let id = [];
     id.push(data.medicine_id);
@@ -69,6 +70,8 @@ export class ViewMedicineComponent implements OnInit {
             this.medId.push(data.medicine_id);
             this.toast.success("Medicine Added To Cart")
             localStorage.setItem("medicineId", JSON.stringify(this.medId));
+            this.cart.push({id: data.medicine_id, quantity: 1});
+            localStorage.setItem("quantity", JSON.stringify(this.cart));
             this.fireStoreService.addMedicineCart(data.medicine_id);
             this.dataShareService.sendOrderCount(this.medId);
           } else {
@@ -79,6 +82,8 @@ export class ViewMedicineComponent implements OnInit {
         } else {
           this.medId.push(data.medicine_id);
           localStorage.setItem("medicineId", JSON.stringify(this.medId));
+          this.cart.push({id: data.medicine_id, quantity: 1});
+          localStorage.setItem("quantity", JSON.stringify(this.cart));
             this.fireStoreService.addMedicineCart(data.medicine_id);
             this.dataShareService.sendOrderCount(this.medId);
         }
@@ -90,8 +95,13 @@ export class ViewMedicineComponent implements OnInit {
   }
 
   onInfo(data: any) {
-    this.dialog.open(MedicineInfoComponent);
-    this.dataShareService.sendmedicineId(data.medicine_id);
+    console.log(data);
+    if(data.available) {
+      this.dialog.open(MedicineInfoComponent);
+      this.dataShareService.sendmedicineId(data.medicine_id);
+    } else {
+      this.toast.info("Data Not Available")
+    }
   }
 
 }

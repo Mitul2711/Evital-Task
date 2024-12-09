@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   onSearch(event: any) {
     const inputValue = (event.target as HTMLInputElement).value;
     if(inputValue) {
-      this.dataShareService.sendMedicineName(inputValue);
+      localStorage.setItem("input", inputValue);
       this.router.navigate(['/medicine']);
     } else {
      this.router.navigate(['/']); 
