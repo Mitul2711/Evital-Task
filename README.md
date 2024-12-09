@@ -125,11 +125,3 @@ Explore the standout features of **EvitalRx**:
 8. **Order Confirmation**  
    ![Order Confirmation](src/assets/image/10.png)
 
-
----
-
-## Contact Us 📞
-
-Have questions? Need support? Contact us via our [GitHub Repository](https://github.com/JBORAD988/evitalrx_Demo_Project?tab=readme-ov-file#order-tracking-example/evitalrx).  
-
-Thank you for choosing **EvitalRx**. We're committed to making your medicine ordering experience seamless and reliable. 🌟💊📦
